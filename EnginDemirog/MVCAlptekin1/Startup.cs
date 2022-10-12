@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MVCAlptekin1.Services.Logging;
 
 namespace MVCAlptekin1
 {
@@ -23,6 +24,9 @@ namespace MVCAlptekin1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession();
+            //CustomerController içerisinde ILogger için DatabaseLogger mý FileLogger mý kullanacak belirtiyor.
+            services.AddScoped<ILogger, DatabaseLogger>();
             services.AddControllersWithViews();
         }
 
@@ -41,7 +45,7 @@ namespace MVCAlptekin1
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();

@@ -6,13 +6,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MVCAlptekin1.Services.Logging;
 
 namespace MVCAlptekin1.Controllers
 {
+    [Route("deneme")]
     public class CustomerController : Controller
     {
-        public ViewResult Index()
+        private ILogger _logger;
+
+        public CustomerController(ILogger logger)
         {
+            _logger = logger;
+        }
+
+        [Route("index")]
+        [Route("")]
+        [Route("~/anasayfa")]
+        public IActionResult Index()
+        {
+            _logger.Log("");
             List<Customer> customer = new List<Customer>
             {
                 new Customer{Id=1,FirstName="Alptekin",LastName="Ocakdan",City="Sakarya"},
