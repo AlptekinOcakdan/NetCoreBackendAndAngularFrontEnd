@@ -49,10 +49,10 @@ namespace DataAccess.Concrete.InMemory
         public void Update(Product product)
         {
             Product productToUpdate = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
-            productToUpdate.ProductName=product.ProductName;
-            productToUpdate.UnitPrice=product.UnitPrice;
-            productToUpdate.UnitsInStock=product.UnitsInStock;
-            productToUpdate.CategoryId=product.CategoryId;
+            productToUpdate.ProductName = product.ProductName;
+            productToUpdate.UnitPrice = product.UnitPrice;
+            productToUpdate.UnitsInStock = product.UnitsInStock;
+            productToUpdate.CategoryId = product.CategoryId;
         }
 
         public void Delete(Product product)
@@ -60,6 +60,11 @@ namespace DataAccess.Concrete.InMemory
             Product productToDelete = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
 
             _products.Remove(productToDelete);
+        }
+
+        public List<Product> GetAllByCategory(int categoryId)
+        {
+            return _products.Where(p => p.CategoryId == categoryId).ToList();
         }
     }
 }
