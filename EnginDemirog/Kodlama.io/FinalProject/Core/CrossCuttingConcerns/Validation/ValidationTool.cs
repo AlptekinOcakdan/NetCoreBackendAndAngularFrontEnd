@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using ValidationException = System.ComponentModel.DataAnnotations.ValidationException;
 
 namespace Core.CrossCuttingConcerns.Validation
 {
@@ -11,7 +10,7 @@ namespace Core.CrossCuttingConcerns.Validation
             var result = validator.Validate(context);
             if (!result.IsValid)
             {
-                throw new ValidationException(result.Errors.ToString());
+                throw new ValidationException(result.Errors);
             }
 
         }
